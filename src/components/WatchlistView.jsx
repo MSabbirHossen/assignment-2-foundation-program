@@ -1,17 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useMovieContext } from "../context/MovieContext";
+import { useWatchlist } from "../context/WatchlistContext";
 import MovieCard from "./MovieCard";
+import EmptyState from "./ui/EmptyState";
 import { Heart } from "lucide-react";
 
+/**
+ * Watchlist View Component (SRP & ISP)
+ */
 export default function WatchlistView() {
-  const { favorites, toggleFavorite } = useMovieContext();
+  const { favorites, clearWatchlist } = useWatchlist();
 
   const handleClearWatchlist = () => {
     if (
       window.confirm("Are you sure you want to clear your entire watchlist?")
     ) {
-      favorites.forEach((item) => toggleFavorite(item));
+      clearWatchlist();
     }
   };
 
@@ -39,7 +43,7 @@ export default function WatchlistView() {
             </span>
             <button
               onClick={handleClearWatchlist}
-              className="px-3.5 py-2 rounded-xl text-xs font-bold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-colors"
+              className="px-3.5 py-2 rounded-xl text-xs font-bold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-colors cursor-pointer"
             >
               Clear All
             </button>
@@ -49,26 +53,19 @@ export default function WatchlistView() {
 
       {/* Grid or Empty State */}
       {favorites.length === 0 ? (
-        <div className="py-20 text-center max-w-md mx-auto space-y-5 bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-xs">
-          <div className="w-20 h-20 mx-auto rounded-3xl bg-white border border-slate-200 flex items-center justify-center text-[#007ea7] shadow-sm">
-            <Heart className="w-10 h-10 stroke-1" />
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-[#00171f]">
-              Your watchlist is currently empty
-            </h3>
-            <p className="text-sm text-slate-500 mt-2">
-              Browse movies and save your favorite titles to your personal
-              watchlist.
-            </p>
-          </div>
-          <Link
-            to="/movies"
-            className="px-6 py-3 rounded-2xl bg-[#007ea7] hover:bg-[#003459] text-white font-bold text-sm shadow-md shadow-[#007ea7]/20 inline-flex items-center justify-center transition-all hover:scale-105"
-          >
-            <span>Explore Movies</span>
-          </Link>
-        </div>
+        <EmptyState
+          icon={<Heart className="w-10 h-10 stroke-1 text-[#007ea7]" />}
+          title="Your watchlist is currently empty"
+          description="Browse movies and save your favorite titles to your personal watchlist."
+          action={
+            <Link
+              to="/movies"
+              className="px-6 py-3 rounded-2xl bg-[#007ea7] hover:bg-[#003459] text-white font-bold text-sm shadow-md shadow-[#007ea7]/20 inline-flex items-center justify-center transition-all hover:scale-105"
+            >
+              Explore Movies
+            </Link>
+          }
+        />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {favorites.map((show) => (

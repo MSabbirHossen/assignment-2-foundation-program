@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { useMovieContext } from '../context/MovieContext';
-import { Menu, X } from 'lucide-react';
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { useWatchlist } from "../context/WatchlistContext";
+import { Menu, X } from "lucide-react";
 
+/**
+ * Main Application Navigation Bar (SRP & ISP)
+ */
 export default function Navbar() {
-  const { favorites } = useMovieContext();
+  const { favorites } = useWatchlist();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navLinkClass = ({ isActive }) =>
     `px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 border-2 ${
       isActive
-        ? 'bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7] shadow-xs'
-        : 'text-[#003459] border-transparent hover:text-[#007ea7] hover:bg-slate-100'
+        ? "bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7] shadow-xs"
+        : "text-[#003459] border-transparent hover:text-[#007ea7] hover:bg-slate-100"
     }`;
 
   const mobileNavLinkClass = ({ isActive }) =>
     `w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold border-2 ${
       isActive
-        ? 'bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7]'
-        : 'text-[#003459] border-transparent hover:bg-slate-100'
+        ? "bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7]"
+        : "text-[#003459] border-transparent hover:bg-slate-100"
     }`;
 
   return (
@@ -51,7 +54,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links (no icons) */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-2">
             <NavLink to="/" end className={navLinkClass}>
               Home
@@ -71,7 +74,7 @@ export default function Navbar() {
             </NavLink>
           </nav>
 
-          {/* Action Button (no icons) */}
+          {/* Action Button */}
           <div className="hidden md:flex items-center gap-4">
             <Link
               to="/movies"
@@ -111,7 +114,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b-2 border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 animate-fadeIn shadow-lg">
           <NavLink

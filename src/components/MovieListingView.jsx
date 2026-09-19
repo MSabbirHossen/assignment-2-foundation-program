@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useMovieContext } from "../context/MovieContext";
+import React, { useEffect } from "react";
+import { useShows } from "../context/ShowsContext";
+import { usePagination } from "../hooks/usePagination";
 import SearchBar from "./SearchBar";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
-import { Film, AlertCircle } from "lucide-react";
+import EmptyState from "./ui/EmptyState";
+import ErrorBanner from "./ui/ErrorBanner";
+import { Film } from "lucide-react";
 
+/**
+ * Movie Catalog Listing View (Single Responsibility Principle)
+ */
 export default function MovieListingView() {
   const {
     displayedShows,
@@ -18,28 +24,25 @@ export default function MovieListingView() {
     hasMore,
     loadingMore,
     loadMoreShows,
-  } = useMovieContext();
+  } = useShows();
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(12);
+  const {
+    currentPage,
+    itemsPerPage,
+    setItemsPerPage,
+    totalPages,
+    startIndex,
+    endIndex,
+    goToPage,
+  } = usePagination({
+    totalItems: displayedShows.length,
+    initialItemsPerPage: 12,
+    resetDependencies: [searchQuery, selectedGenre, sortBy, statusFilter],
+  });
 
-  // Reset to page 1 whenever search, filters, or items per page change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery, selectedGenre, sortBy, statusFilter, itemsPerPage]);
-
-  const handleSuggestionClick = (query) => {
-    setSearchQuery(query);
-  };
-
-  // Pagination calculations
-  const totalItems = displayedShows.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
   const currentShows = displayedShows.slice(startIndex, endIndex);
 
-  // Auto-fetch next API batch if user nears the end of allShows (for TVMaze pagination)
+  // Auto-fetch next API batch if user nears the end of allShows
   useEffect(() => {
     if (
       !searchQuery.trim() &&
@@ -61,14 +64,12 @@ export default function MovieListingView() {
   ]);
 
   const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-      const listingElement = document.getElementById("movie-listing-section");
-      if (listingElement) {
-        listingElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+    goToPage(newPage);
+    const listingElement = document.getElementById("movie-listing-section");
+    if (listingElement) {
+      listingElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -92,20 +93,7 @@ export default function MovieListingView() {
       <SearchBar />
 
       {/* Error Banner */}
-      {error && (
-        <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 text-rose-500 shrink-0" />
-            <span className="text-sm font-medium">{error}</span>
-          </div>
-          <button
-            onClick={() => window.location.reload()}
-            className="px-4 py-1.5 rounded-xl bg-rose-100 hover:bg-rose-200 text-xs font-bold text-rose-800 transition-colors"
-          >
-            Retry
-          </button>
-        </div>
-      )}
+      <ErrorBanner message={error} onRetry={() => window.location.reload()} />
 
       {/* Movie Grid / Loading Skeletons / Empty States */}
       {loading ? (
@@ -127,7 +115,8 @@ export default function MovieListingView() {
           {/* Top Pagination Controls / Items Per Page Bar */}
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-[#003459] bg-slate-50 p-3 rounded-2xl border border-slate-200">
             <div>
-              Page <span className="font-bold text-[#007ea7]">{currentPage}</span> of{" "}
+              Page{" "}
+              <span className="font-bold text-[#007ea7]">{currentPage}</span> of{" "}
               <span className="font-bold text-[#007ea7]">{totalPages}</span>
             </div>
 
@@ -161,24 +150,17 @@ export default function MovieListingView() {
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
-            totalItems={totalItems}
+            totalItems={displayedShows.length}
             itemsPerPage={itemsPerPage}
           />
         </>
       ) : (
         /* Empty Search State */
-        <div className="py-20 text-center max-w-lg mx-auto space-y-5 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-          <div className="w-20 h-20 mx-auto rounded-3xl bg-slate-50 border border-slate-200 flex items-center justify-center text-[#007ea7] shadow-inner">
-            <Film className="w-10 h-10 stroke-1" />
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-[#00171f]">No shows found</h3>
-            <p className="text-sm text-slate-500 mt-2">
-              We couldn't find any titles matching your search criteria. Try a
-              different title or select another genre.
-            </p>
-          </div>
-
+        <EmptyState
+          icon={<Film className="w-10 h-10 stroke-1" />}
+          title="No shows found"
+          description="We couldn't find any titles matching your search criteria. Try a different title or select another genre."
+        >
           {/* Quick Search Suggestions */}
           <div className="pt-2">
             <p className="text-xs font-semibold text-[#003459] uppercase tracking-wider mb-3">
@@ -195,17 +177,16 @@ export default function MovieListingView() {
               ].map((term) => (
                 <button
                   key={term}
-                  onClick={() => handleSuggestionClick(term)}
-                  className="px-3 py-1 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-[#007ea7] text-[#003459] hover:text-white border border-slate-200 transition-colors"
+                  onClick={() => setSearchQuery(term)}
+                  className="px-3 py-1 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-[#007ea7] text-[#003459] hover:text-white border border-slate-200 transition-colors cursor-pointer"
                 >
                   {term}
                 </button>
               ))}
             </div>
           </div>
-        </div>
+        </EmptyState>
       )}
     </section>
   );
 }
-

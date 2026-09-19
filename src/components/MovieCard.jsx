@@ -1,24 +1,37 @@
 import React, { useState } from "react";
-import { useMovieContext } from "../context/MovieContext";
-import { Star, Calendar, Clock, Heart, Eye, Film } from "lucide-react";
+import { useModal } from "../context/ModalContext";
+import { useWatchlist } from "../context/WatchlistContext";
+import RatingBadge from "./ui/RatingBadge";
+import { formatYear } from "../utils/formatting";
+import { Calendar, Clock, Heart, Eye, Film } from "lucide-react";
 
+/**
+ * Movie Card Component (SRP & ISP)
+ */
 export default function MovieCard({ show }) {
-  const { openModal, isFavorite, toggleFavorite } = useMovieContext();
+  const { openModal } = useModal();
+  const { isFavorite, toggleFavorite } = useWatchlist();
   const [imageError, setImageError] = useState(false);
 
   if (!show) return null;
 
   const favorited = isFavorite(show.id);
-  const releaseYear = show.premiered ? show.premiered.slice(0, 4) : "N/A";
-  const rating = show.rating?.average
-    ? Number(show.rating.average).toFixed(1)
-    : "NR";
+  const releaseYear = formatYear(show.premiered);
   const posterUrl = show.image?.medium || show.image?.original;
   const genres = Array.isArray(show.genres) ? show.genres.slice(0, 2) : [];
 
+  const handleCardClick = () => {
+    openModal(show);
+  };
+
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation();
+    toggleFavorite(show);
+  };
+
   return (
     <div
-      onClick={() => openModal(show)}
+      onClick={handleCardClick}
       className="group relative flex flex-col rounded-2xl bg-white border-2 border-slate-200 hover:border-[#007ea7] transition-all duration-200 hover:-translate-y-1.5 shadow-md hover:shadow-xl overflow-hidden cursor-pointer"
     >
       {/* Poster Image Container */}
@@ -48,16 +61,10 @@ export default function MovieCard({ show }) {
 
         {/* Top Badges: Rating & Favorite Toggle */}
         <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-[#00171f] text-[#3fcfff] border border-[#00a8e8] shadow-md">
-            <Star className="w-3.5 h-3.5 fill-[#3fcfff]" />
-            {rating !== "NR" ? rating : "NR"}
-          </span>
+          <RatingBadge rating={show.rating?.average} />
 
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleFavorite(show);
-            }}
+            onClick={handleFavoriteClick}
             title={favorited ? "Remove from watchlist" : "Add to watchlist"}
             className={`p-2 rounded-xl transition-all duration-200 border-2 cursor-pointer shadow-md ${
               favorited
@@ -106,7 +113,6 @@ export default function MovieCard({ show }) {
 
           {/* Title */}
           <h3
-            onClick={() => openModal(show)}
             title={show.name}
             className="font-almendra text-lg sm:text-xl font-bold text-[#00171f] group-hover:text-[#007ea7] transition-colors line-clamp-1 cursor-pointer tracking-wider"
           >
@@ -128,9 +134,9 @@ export default function MovieCard({ show }) {
           </div>
         </div>
 
-        {/* CTA: See Details Button */}
+        {/* CTA: See Details Button (retaining eye icon) */}
         <button
-          onClick={() => openModal(show)}
+          onClick={handleCardClick}
           className="w-full mt-2 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#003459] hover:bg-[#007ea7] border-2 border-[#003459] hover:border-[#007ea7] transition-all duration-200 flex items-center justify-center gap-2 group/btn shadow-xs cursor-pointer"
         >
           <span>See Details</span>

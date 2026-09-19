@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useMovieContext } from "../context/MovieContext";
+import { useShows } from "../context/ShowsContext";
 import MovieCard from "./MovieCard";
 
+/**
+ * Featured & Trending Shows Showcase (Single Responsibility Principle)
+ */
 export default function FeaturedShows() {
-  const { topRatedShows } = useMovieContext();
+  const { topRatedShows } = useShows();
 
   if (!topRatedShows || topRatedShows.length === 0) return null;
 

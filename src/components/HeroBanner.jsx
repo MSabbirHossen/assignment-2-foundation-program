@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useMovieContext } from "../context/MovieContext";
+import { useShows } from "../context/ShowsContext";
+import { useModal } from "../context/ModalContext";
+import RatingBadge from "./ui/RatingBadge";
 import { Search, Star, Sparkles } from "lucide-react";
 
+/**
+ * Hero Banner Showcase Component (SRP & ISP)
+ */
 export default function HeroBanner() {
-  const { setSearchQuery, topRatedShows, openModal } = useMovieContext();
+  const { setSearchQuery, topRatedShows } = useShows();
+  const { openModal } = useModal();
   const [localSearch, setLocalSearch] = useState("");
   const navigate = useNavigate();
 
@@ -37,6 +43,7 @@ export default function HeroBanner() {
           <div className="lg:col-span-7 text-left space-y-6">
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#007ea7]/10 border-2 border-[#007ea7] text-xs font-bold text-[#007ea7] shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#007ea7]" />
               <span>OVER 50,000+ TV SHOWS & MOVIES LIVE</span>
             </div>
 
@@ -130,7 +137,6 @@ export default function HeroBanner() {
           {/* Right Column: Hero Visual Card Showcase */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-md">
-              {/* Card container with solid outline and shadow */}
               <div className="relative rounded-2xl overflow-hidden border-2 border-slate-300 hover:border-[#007ea7] bg-white shadow-xl transition-all duration-300">
                 {/* Poster image */}
                 <div className="relative h-80 sm:h-96 w-full overflow-hidden bg-slate-900">
@@ -147,10 +153,10 @@ export default function HeroBanner() {
 
                   {/* Top Badges */}
                   <div className="absolute top-4 left-4 flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#00171f] text-[#3fcfff] border-2 border-[#00a8e8] flex items-center gap-1 shadow-md">
-                      <Star className="w-3.5 h-3.5 fill-[#3fcfff]" />
-                      {featuredHeroShow.rating?.average || 9.5} / 10
-                    </span>
+                    <RatingBadge
+                      rating={featuredHeroShow.rating?.average || 9.5}
+                      showScale
+                    />
                     <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#007ea7] text-white border border-[#003459] shadow-md">
                       Trending #1
                     </span>

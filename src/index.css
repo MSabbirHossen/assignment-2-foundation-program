@@ -86,7 +86,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Modal animation */
 @keyframes modalSlideUp {
   from {
     opacity: 0;
@@ -100,4 +99,18 @@
 
 .modal-enter {
   animation: modalSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Mobile Drawer Slide In */
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.drawer-enter {
+  animation: drawerSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

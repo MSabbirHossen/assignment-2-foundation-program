@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
-import { Search, Flame, Play, Star, Sparkles } from "lucide-react";
+import { Search, Star, Sparkles } from "lucide-react";
 
 export default function HeroBanner() {
   const { setSearchQuery, topRatedShows, openModal } = useMovieContext();
@@ -37,7 +37,7 @@ export default function HeroBanner() {
           <div className="lg:col-span-7 text-left space-y-6">
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#007ea7]/10 border-2 border-[#007ea7] text-xs font-bold text-[#007ea7] shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#007ea7]" />
+
               <span>OVER 50,000+ TV SHOWS & MOVIES LIVE</span>
             </div>
 
@@ -83,20 +83,18 @@ export default function HeroBanner() {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 to="/movies"
-                className="px-7 py-3.5 rounded-2xl bg-[#007ea7] hover:bg-[#003459] border-2 border-[#003459] text-white font-bold text-base shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-3"
+                className="px-7 py-3.5 rounded-2xl bg-[#007ea7] hover:bg-[#003459] border-2 border-[#003459] text-white font-bold text-base shadow-md hover:shadow-lg transition-all duration-200"
               >
-                <Flame className="w-5 h-5 text-amber-300 animate-bounce" />
-                <span>Explore Now</span>
+                Explore Now
               </Link>
 
               <button
                 onClick={() => {
                   if (featuredHeroShow) openModal(featuredHeroShow);
                 }}
-                className="px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 border-2 border-slate-300 text-[#003459] hover:text-[#00171f] hover:border-[#007ea7] font-semibold text-base transition-all duration-200 flex items-center gap-2.5 shadow-sm cursor-pointer"
+                className="px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 border-2 border-slate-300 text-[#003459] hover:text-[#00171f] hover:border-[#007ea7] font-semibold text-base transition-all duration-200 shadow-sm cursor-pointer"
               >
-                <Play className="w-4 h-4 text-[#007ea7] fill-[#007ea7]" />
-                <span>Featured Showcase</span>
+                Featured Showcase
               </button>
             </div>
 

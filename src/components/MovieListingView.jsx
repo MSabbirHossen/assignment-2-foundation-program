@@ -2,7 +2,7 @@ import React from "react";
 import { useMovieContext } from "../context/MovieContext";
 import SearchBar from "./SearchBar";
 import MovieCard from "./MovieCard";
-import { Film, RefreshCw, AlertCircle, Compass } from "lucide-react";
+import { Film, AlertCircle } from "lucide-react";
 
 export default function MovieListingView() {
   const {
@@ -27,8 +27,7 @@ export default function MovieListingView() {
     >
       {/* Page Header */}
       <div className="text-center max-w-2xl mx-auto space-y-2">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#007ea7]/10 border border-[#007ea7]/25 text-xs font-bold text-[#007ea7]">
-          <Compass className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#007ea7]/10 border border-[#007ea7]/25 text-xs font-bold text-[#007ea7]">
           <span>GLOBAL DIRECTORY</span>
         </div>
         <h2 className="font-almendra text-3xl sm:text-4xl md:text-5xl font-bold text-[#00171f] tracking-wide">
@@ -89,19 +88,9 @@ export default function MovieListingView() {
               <button
                 onClick={loadMoreShows}
                 disabled={loadingMore}
-                className="px-8 py-3.5 rounded-2xl bg-[#003459] hover:bg-[#007ea7] disabled:bg-slate-300 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 inline-flex items-center gap-2.5"
+                className="px-8 py-3.5 rounded-2xl bg-[#003459] hover:bg-[#007ea7] disabled:bg-slate-300 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 inline-flex items-center justify-center"
               >
-                {loadingMore ? (
-                  <>
-                    <RefreshCw className="w-4 h-4 animate-spin text-white" />
-                    <span>Loading more titles...</span>
-                  </>
-                ) : (
-                  <>
-                    <Film className="w-4 h-4 text-[#3fcfff]" />
-                    <span>Load More Shows</span>
-                  </>
-                )}
+                {loadingMore ? "Loading more titles..." : "Load More Shows"}
               </button>
             </div>
           )}

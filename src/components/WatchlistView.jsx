@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
 import MovieCard from "./MovieCard";
-import { Heart, ArrowRight, Trash2 } from "lucide-react";
+import { Heart } from "lucide-react";
 
 export default function WatchlistView() {
   const { favorites, toggleFavorite } = useMovieContext();
@@ -20,8 +20,7 @@ export default function WatchlistView() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 mb-8">
         <div>
-          <div className="flex items-center gap-2 text-[#007ea7] text-xs font-bold uppercase tracking-wider mb-1">
-            <Heart className="w-4 h-4 fill-[#00a8e8] text-[#00a8e8]" />
+          <div className="text-[#007ea7] text-xs font-bold uppercase tracking-wider mb-1">
             <span>Personal Collection</span>
           </div>
           <h1 className="font-almendra text-3xl sm:text-4xl md:text-5xl font-bold text-[#00171f] tracking-wide">
@@ -40,9 +39,8 @@ export default function WatchlistView() {
             </span>
             <button
               onClick={handleClearWatchlist}
-              className="px-3.5 py-2 rounded-xl text-xs font-bold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 flex items-center gap-1.5 transition-colors"
+              className="px-3.5 py-2 rounded-xl text-xs font-bold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-colors"
             >
-              <Trash2 className="w-3.5 h-3.5" />
               Clear All
             </button>
           </div>
@@ -60,16 +58,15 @@ export default function WatchlistView() {
               Your watchlist is currently empty
             </h3>
             <p className="text-sm text-slate-500 mt-2">
-              Browse movies and click the heart icon on any card to save it to
-              your personal watchlist.
+              Browse movies and save your favorite titles to your personal
+              watchlist.
             </p>
           </div>
           <Link
             to="/movies"
-            className="px-6 py-3 rounded-2xl bg-[#007ea7] hover:bg-[#003459] text-white font-bold text-sm shadow-md shadow-[#007ea7]/20 inline-flex items-center gap-2 transition-all hover:scale-105"
+            className="px-6 py-3 rounded-2xl bg-[#007ea7] hover:bg-[#003459] text-white font-bold text-sm shadow-md shadow-[#007ea7]/20 inline-flex items-center justify-center transition-all hover:scale-105"
           >
             <span>Explore Movies</span>
-            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       ) : (

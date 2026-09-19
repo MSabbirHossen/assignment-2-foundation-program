@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
 import MovieCard from "./MovieCard";
-import { TrendingUp, ArrowRight } from "lucide-react";
 
 export default function FeaturedShows() {
   const { topRatedShows } = useMovieContext();
@@ -15,8 +14,7 @@ export default function FeaturedShows() {
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="flex items-center gap-2 text-[#007ea7] text-xs font-bold uppercase tracking-wider mb-1">
-              <TrendingUp className="w-4 h-4" />
+            <div className="text-[#007ea7] text-xs font-bold uppercase tracking-wider mb-1">
               <span>Critically Acclaimed</span>
             </div>
             <h2 className="font-almendra text-3xl sm:text-4xl font-bold text-[#00171f] tracking-wide">
@@ -30,10 +28,9 @@ export default function FeaturedShows() {
 
           <Link
             to="/movies"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#007ea7] hover:text-[#003459] transition-colors group"
+            className="inline-flex items-center text-sm font-bold text-[#007ea7] hover:text-[#003459] transition-colors"
           >
             <span>View Full Directory</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 

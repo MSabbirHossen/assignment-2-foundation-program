@@ -17,7 +17,10 @@ export default function MovieCard({ show }) {
   const genres = Array.isArray(show.genres) ? show.genres.slice(0, 2) : [];
 
   return (
-    <div className="group relative flex flex-col rounded-2xl bg-white border-2 border-slate-200 hover:border-[#007ea7] transition-all duration-200 hover:-translate-y-1.5 shadow-md hover:shadow-xl overflow-hidden">
+    <div
+      onClick={() => openModal(show)}
+      className="group relative flex flex-col rounded-2xl bg-white border-2 border-slate-200 hover:border-[#007ea7] transition-all duration-200 hover:-translate-y-1.5 shadow-md hover:shadow-xl overflow-hidden cursor-pointer"
+    >
       {/* Poster Image Container */}
       <div className="relative aspect-[2/3] w-full overflow-hidden bg-slate-900">
         {!imageError && posterUrl ? (

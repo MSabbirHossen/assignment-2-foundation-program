@@ -51,7 +51,7 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
   background: #007ea7;
@@ -61,59 +61,22 @@
   background: #003459;
 }
 
-/* Custom animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* Solid card styling */
+.solid-card {
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 23, 31, 0.07),
+    0 2px 4px -2px rgba(0, 23, 31, 0.05);
+  transition: all 0.2s ease-in-out;
 }
 
-@keyframes pulseGlow {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
-.animate-float {
-  animation: float 5s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 4s ease-in-out infinite;
-}
-
-/* Light theme cards and panels */
-.light-glass-panel {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 126, 167, 0.12);
-}
-
-.light-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 52, 89, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(0, 23, 31, 0.05);
-}
-
-.light-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.light-card-hover:hover {
-  background: #ffffff;
-  border-color: rgba(0, 168, 232, 0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 30px -6px rgba(0, 126, 167, 0.18);
+.solid-card:hover {
+  border-color: #007ea7;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 126, 167, 0.15),
+    0 4px 6px -4px rgba(0, 126, 167, 0.1);
+  transform: translateY(-3px);
 }
 
 /* Gradient text utilities matching palette */
@@ -127,7 +90,7 @@
 @keyframes modalSlideUp {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(20px);
+    transform: scale(0.96) translateY(16px);
   }
   to {
     opacity: 1;
@@ -136,5 +99,5 @@
 }
 
 .modal-enter {
-  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: modalSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

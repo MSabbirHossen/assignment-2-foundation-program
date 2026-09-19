@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
 import {
   Film,
@@ -21,21 +21,21 @@ export default function Navbar() {
   };
 
   const navLinkClass = ({ isActive }) =>
-    `px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
+    `px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 border-2 ${
       isActive
-        ? "bg-[#007ea7]/10 text-[#007ea7] border border-[#007ea7]/30 shadow-sm"
-        : "text-[#003459] hover:text-[#007ea7] hover:bg-slate-100"
+        ? "bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7] shadow-xs"
+        : "text-[#003459] border-transparent hover:text-[#007ea7] hover:bg-slate-100"
     }`;
 
   const mobileNavLinkClass = ({ isActive }) =>
-    `w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold ${
+    `w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold border-2 ${
       isActive
-        ? "bg-[#007ea7]/10 text-[#007ea7] border border-[#007ea7]/30"
-        : "text-[#003459] hover:bg-slate-100"
+        ? "bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7]"
+        : "text-[#003459] border-transparent hover:bg-slate-100"
     }`;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-xl transition-all shadow-xs">
+    <header className="sticky top-0 z-40 w-full border-b-2 border-slate-200 bg-white shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo / Brand Name */}
@@ -44,7 +44,7 @@ export default function Navbar() {
             onClick={closeMobileMenu}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#003459] via-[#007ea7] to-[#00a8e8] flex items-center justify-center shadow-md shadow-[#007ea7]/20 group-hover:scale-105 transition-all duration-300">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#003459] via-[#007ea7] to-[#00a8e8] border-2 border-[#003459] flex items-center justify-center shadow-md shadow-[#007ea7]/20 group-hover:scale-105 transition-all duration-200">
               <Film className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -52,7 +52,7 @@ export default function Navbar() {
                 <span className="font-extrabold text-2xl tracking-tight text-[#00171f]">
                   Movie<span className="text-[#007ea7]">Explorer</span>
                 </span>
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#007ea7]/10 text-[#007ea7] border border-[#007ea7]/30">
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#007ea7]/10 text-[#007ea7] border border-[#007ea7]">
                   PRO
                 </span>
               </div>
@@ -63,7 +63,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          <nav className="hidden md:flex items-center gap-2">
             <NavLink to="/" end className={navLinkClass}>
               <Sparkles className="w-4 h-4" />
               Home
@@ -80,7 +80,7 @@ export default function Navbar() {
               />
               Watchlist
               {favorites.length > 0 && (
-                <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#00a8e8]/15 text-[#007ea7] border border-[#00a8e8]/30">
+                <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#00a8e8]/20 text-[#007ea7] border border-[#00a8e8]">
                   {favorites.length}
                 </span>
               )}
@@ -91,7 +91,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               to="/movies"
-              className="relative group overflow-hidden px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-[#003459] via-[#007ea7] to-[#00a8e8] shadow-md shadow-[#007ea7]/25 hover:shadow-lg hover:shadow-[#007ea7]/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center gap-2"
+              className="relative group px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#007ea7] hover:bg-[#003459] border-2 border-[#003459] shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2"
             >
               <Clapperboard className="w-4 h-4 text-white" />
               <span>Browse All Movies</span>
@@ -103,7 +103,7 @@ export default function Navbar() {
             <Link
               to="/watchlist"
               onClick={closeMobileMenu}
-              className="p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-[#003459] relative"
+              className="p-2.5 rounded-xl bg-slate-100 border-2 border-slate-200 text-[#003459] relative shadow-xs"
               aria-label="View Favorites"
             >
               <Heart
@@ -117,7 +117,7 @@ export default function Navbar() {
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-[#00171f] hover:text-[#007ea7]"
+              className="p-2.5 rounded-xl bg-slate-100 border-2 border-slate-200 text-[#00171f] hover:text-[#007ea7] shadow-xs"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? (
@@ -130,9 +130,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 bg-white/98 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-3 animate-fadeIn shadow-lg">
+        <div className="md:hidden border-b-2 border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 animate-fadeIn shadow-lg">
           <NavLink
             to="/"
             end
@@ -160,7 +160,7 @@ export default function Navbar() {
               Watchlist
             </div>
             {favorites.length > 0 && (
-              <span className="px-2.5 py-0.5 text-xs font-bold rounded-full bg-[#00a8e8]/15 text-[#007ea7] border border-[#00a8e8]/30 ml-auto">
+              <span className="px-2.5 py-0.5 text-xs font-bold rounded-full bg-[#00a8e8]/20 text-[#007ea7] border border-[#00a8e8] ml-auto">
                 {favorites.length}
               </span>
             )}
@@ -169,7 +169,7 @@ export default function Navbar() {
             <Link
               to="/movies"
               onClick={closeMobileMenu}
-              className="w-full py-3 rounded-xl text-center font-bold text-white bg-gradient-to-r from-[#003459] via-[#007ea7] to-[#00a8e8] shadow-md shadow-[#007ea7]/25 flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl text-center font-bold text-white bg-[#007ea7] hover:bg-[#003459] border-2 border-[#003459] shadow-md flex items-center justify-center gap-2"
             >
               <Clapperboard className="w-5 h-5" />
               Browse Movie Listing

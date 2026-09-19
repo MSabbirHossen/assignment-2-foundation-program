@@ -37,7 +37,6 @@ export default function HeroBanner() {
           <div className="lg:col-span-7 text-left space-y-6">
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#007ea7]/10 border-2 border-[#007ea7] text-xs font-bold text-[#007ea7] shadow-xs">
-
               <span>OVER 50,000+ TV SHOWS & MOVIES LIVE</span>
             </div>
 

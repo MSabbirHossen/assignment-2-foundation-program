@@ -1,23 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useMovieContext } from "../context/MovieContext";
 import SearchBar from "./SearchBar";
 import MovieCard from "./MovieCard";
+import Pagination from "./Pagination";
 import { Film, AlertCircle } from "lucide-react";
 
 export default function MovieListingView() {
   const {
     displayedShows,
     loading,
-    loadingMore,
-    hasMore,
-    loadMoreShows,
     error,
     searchQuery,
     setSearchQuery,
+    selectedGenre,
+    sortBy,
+    statusFilter,
+    hasMore,
+    loadingMore,
+    loadMoreShows,
   } = useMovieContext();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(12);
+
+  // Reset to page 1 whenever search, filters, or items per page change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedGenre, sortBy, statusFilter, itemsPerPage]);
 
   const handleSuggestionClick = (query) => {
     setSearchQuery(query);
+  };
+
+  // Pagination calculations
+  const totalItems = displayedShows.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentShows = displayedShows.slice(startIndex, endIndex);
+
+  // Auto-fetch next API batch if user nears the end of allShows (for TVMaze pagination)
+  useEffect(() => {
+    if (
+      !searchQuery.trim() &&
+      hasMore &&
+      !loadingMore &&
+      currentPage >= totalPages - 1 &&
+      displayedShows.length > 0
+    ) {
+      loadMoreShows();
+    }
+  }, [
+    currentPage,
+    totalPages,
+    hasMore,
+    loadingMore,
+    searchQuery,
+    displayedShows.length,
+    loadMoreShows,
+  ]);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+      const listingElement = document.getElementById("movie-listing-section");
+      if (listingElement) {
+        listingElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -27,9 +79,6 @@ export default function MovieListingView() {
     >
       {/* Page Header */}
       <div className="text-center max-w-2xl mx-auto space-y-2">
-        <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#007ea7]/10 border border-[#007ea7]/25 text-xs font-bold text-[#007ea7]">
-          <span>GLOBAL DIRECTORY</span>
-        </div>
         <h2 className="font-almendra text-3xl sm:text-4xl md:text-5xl font-bold text-[#00171f] tracking-wide">
           Explore Movie & TV Show Catalog
         </h2>
@@ -75,25 +124,46 @@ export default function MovieListingView() {
         </div>
       ) : displayedShows.length > 0 ? (
         <>
+          {/* Top Pagination Controls / Items Per Page Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-[#003459] bg-slate-50 p-3 rounded-2xl border border-slate-200">
+            <div>
+              Page <span className="font-bold text-[#007ea7]">{currentPage}</span> of{" "}
+              <span className="font-bold text-[#007ea7]">{totalPages}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <label htmlFor="items-per-page-select" className="text-slate-600">
+                Shows per page:
+              </label>
+              <select
+                id="items-per-page-select"
+                value={itemsPerPage}
+                onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                className="bg-white border border-slate-200 rounded-xl px-2.5 py-1 text-xs font-bold text-[#00171f] focus:outline-none focus:ring-2 focus:ring-[#007ea7] cursor-pointer shadow-xs"
+              >
+                <option value={9}>9 (3x3)</option>
+                <option value={12}>12 (3x4)</option>
+                <option value={18}>18 (3x6)</option>
+                <option value={24}>24 (3x8)</option>
+              </select>
+            </div>
+          </div>
+
           {/* Responsive Movie Grid Layout (3 cards per row on desktop) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {displayedShows.map((show) => (
+            {currentShows.map((show) => (
               <MovieCard key={show.id} show={show} />
             ))}
           </div>
 
-          {/* Load More Button */}
-          {!searchQuery.trim() && hasMore && (
-            <div className="pt-10 text-center">
-              <button
-                onClick={loadMoreShows}
-                disabled={loadingMore}
-                className="px-8 py-3.5 rounded-2xl bg-[#003459] hover:bg-[#007ea7] disabled:bg-slate-300 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 inline-flex items-center justify-center"
-              >
-                {loadingMore ? "Loading more titles..." : "Load More Shows"}
-              </button>
-            </div>
-          )}
+          {/* Bottom Pagination Component */}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            totalItems={totalItems}
+            itemsPerPage={itemsPerPage}
+          />
         </>
       ) : (
         /* Empty Search State */
@@ -138,3 +208,4 @@ export default function MovieListingView() {
     </section>
   );
 }
+

@@ -1,13 +1,6 @@
 import React from "react";
 import { useMovieContext } from "../context/MovieContext";
-import {
-  Search,
-  X,
-  SlidersHorizontal,
-  ArrowUpDown,
-  Filter,
-  Sparkles,
-} from "lucide-react";
+import { Search, X, Filter } from "lucide-react";
 
 export default function SearchBar() {
   const {
@@ -46,7 +39,7 @@ export default function SearchBar() {
       {/* Search Input Box */}
       <div className="relative max-w-3xl mx-auto">
         <div className="relative flex items-center group">
-          <div className="absolute left-4.5 pointer-events-none text-slate-400 group-focus-within:text-indigo-400 transition-colors">
+          <div className="absolute left-4.5 pointer-events-none text-[#007ea7] group-focus-within:text-[#003459] transition-colors">
             <Search className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
 
@@ -56,19 +49,19 @@ export default function SearchBar() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by title (e.g. Breaking Bad, Girls, Batman, Stranger Things)..."
-            className="w-full pl-13 pr-24 py-4 sm:py-5 rounded-2xl bg-[#0f172a]/95 border-2 border-slate-700/80 hover:border-slate-600 focus:border-indigo-500 text-white placeholder-slate-400 text-sm sm:text-base font-medium shadow-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500/20 transition-all backdrop-blur-xl"
+            className="w-full pl-13 pr-24 py-4 sm:py-5 rounded-2xl bg-white border-2 border-slate-300 hover:border-[#007ea7]/60 focus:border-[#007ea7] text-[#00171f] placeholder-slate-400 text-sm sm:text-base font-medium shadow-md focus:outline-none focus:ring-4 focus:ring-[#007ea7]/15 transition-all"
           />
 
           {/* Right Action Icons: Spinner or Clear */}
           <div className="absolute right-4 flex items-center gap-2">
             {isSearching && (
-              <div className="w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-[#007ea7] border-t-transparent rounded-full animate-spin" />
             )}
 
             {searchQuery && !isSearching && (
               <button
                 onClick={handleClear}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+                className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-[#00171f] transition-colors"
                 title="Clear search"
                 aria-label="Clear search"
               >
@@ -80,11 +73,11 @@ export default function SearchBar() {
       </div>
 
       {/* Filter and Sorting Controls */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
         {/* Left: Genre Selector Chips */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none max-w-full">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1 pl-1">
-            <Filter className="w-3.5 h-3.5 text-indigo-400" /> Genre:
+          <span className="text-xs font-bold text-[#003459] uppercase tracking-wider shrink-0 flex items-center gap-1 pl-1">
+            <Filter className="w-3.5 h-3.5 text-[#007ea7]" /> Genre:
           </span>
           <div className="flex items-center gap-1.5 flex-nowrap">
             {availableGenres.slice(0, 10).map((genre) => (
@@ -93,8 +86,8 @@ export default function SearchBar() {
                 onClick={() => setSelectedGenre(genre)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
                   selectedGenre === genre
-                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
-                    : "bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white"
+                    ? "bg-[#007ea7] text-white shadow-md shadow-[#007ea7]/25"
+                    : "bg-white text-[#003459] hover:bg-[#007ea7]/10 hover:text-[#007ea7] border border-slate-200"
                 }`}
               >
                 {genre}
@@ -110,7 +103,7 @@ export default function SearchBar() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+              className="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold text-[#00171f] focus:outline-none focus:ring-2 focus:ring-[#007ea7] cursor-pointer shadow-xs"
             >
               <option value="All">All Statuses</option>
               <option value="Running">Running</option>
@@ -124,7 +117,7 @@ export default function SearchBar() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+              className="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold text-[#00171f] focus:outline-none focus:ring-2 focus:ring-[#007ea7] cursor-pointer shadow-xs"
             >
               <option value="featured">Sort: Featured</option>
               <option value="rating-desc">Rating: Highest First</option>
@@ -140,7 +133,7 @@ export default function SearchBar() {
           {hasActiveFilters && (
             <button
               onClick={handleResetFilters}
-              className="px-3 py-1.5 rounded-xl text-xs font-bold text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 transition-colors shrink-0"
+              className="px-3 py-1.5 rounded-xl text-xs font-bold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-colors shrink-0"
               title="Reset all filters"
             >
               Reset
@@ -150,26 +143,26 @@ export default function SearchBar() {
       </div>
 
       {/* Active Search & Results Count Status Bar */}
-      <div className="flex items-center justify-between text-xs text-slate-400 px-1">
+      <div className="flex items-center justify-between text-xs text-slate-500 px-1">
         <div className="flex items-center gap-2 font-medium">
           {searchQuery.trim() ? (
             <span>
               Search results for{" "}
-              <strong className="text-white">"{searchQuery}"</strong>
+              <strong className="text-[#00171f]">"{searchQuery}"</strong>
             </span>
           ) : (
             <span>Showing curated shows from TVMaze</span>
           )}
           {selectedGenre !== "All" && (
-            <span className="px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-500/30">
+            <span className="px-2 py-0.5 rounded bg-[#007ea7]/10 text-[#007ea7] border border-[#007ea7]/25 font-semibold">
               {selectedGenre}
             </span>
           )}
         </div>
 
-        <div className="font-semibold text-slate-300">
+        <div className="font-semibold text-slate-700">
           Showing{" "}
-          <span className="text-indigo-400 font-bold">
+          <span className="text-[#007ea7] font-bold">
             {displayedShows.length}
           </span>{" "}
           titles

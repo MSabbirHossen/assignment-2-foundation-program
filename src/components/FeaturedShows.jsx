@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
 import MovieCard from "./MovieCard";
-import { Sparkles, TrendingUp, ArrowRight } from "lucide-react";
+import { TrendingUp, ArrowRight } from "lucide-react";
 
 export default function FeaturedShows() {
   const { topRatedShows } = useMovieContext();
@@ -10,19 +10,19 @@ export default function FeaturedShows() {
   if (!topRatedShows || topRatedShows.length === 0) return null;
 
   return (
-    <section className="py-12 border-t border-slate-800/80">
+    <section className="py-12 border-t border-slate-200 bg-slate-50/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="flex items-center gap-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1">
+            <div className="flex items-center gap-2 text-[#007ea7] text-xs font-bold uppercase tracking-wider mb-1">
               <TrendingUp className="w-4 h-4" />
               <span>Critically Acclaimed</span>
             </div>
-            <h2 className="font-almendra text-3xl sm:text-4xl font-bold text-white tracking-wide">
+            <h2 className="font-almendra text-3xl sm:text-4xl font-bold text-[#00171f] tracking-wide">
               Top Rated & Trending Shows
             </h2>
-            <p className="font-architects text-base sm:text-lg text-slate-300 mt-1">
+            <p className="font-architects text-base sm:text-lg text-[#003459]/70 mt-1">
               Highest scoring series with phenomenal ratings across critics and
               viewers
             </p>
@@ -30,7 +30,7 @@ export default function FeaturedShows() {
 
           <Link
             to="/movies"
-            className="inline-flex items-center gap-2 text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#007ea7] hover:text-[#003459] transition-colors group"
           >
             <span>View Full Directory</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

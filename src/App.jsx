@@ -12,7 +12,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <MovieProvider>
-        <div className="min-h-screen flex flex-col bg-[#090d16] text-slate-100 selection:bg-indigo-500 selection:text-white">
+        <div className="min-h-screen flex flex-col bg-white text-[#00171f] selection:bg-[#00a8e8] selection:text-white">
           <Navbar />
           <main className="flex-1 min-h-[calc(100vh-250px)]">
             <Routes>

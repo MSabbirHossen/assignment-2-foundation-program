@@ -61,8 +61,8 @@ export default function MovieListingView() {
 
       {/* Movie Grid / Loading Skeletons / Empty States */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {Array.from({ length: 15 }).map((_, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {Array.from({ length: 9 }).map((_, index) => (
             <div
               key={index}
               className="rounded-2xl bg-slate-900 border border-slate-800 p-3 space-y-3 animate-pulse"
@@ -76,8 +76,8 @@ export default function MovieListingView() {
         </div>
       ) : displayedShows.length > 0 ? (
         <>
-          {/* Responsive Movie Grid Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {/* Responsive Movie Grid Layout (3 cards per row on desktop) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {displayedShows.map((show) => (
               <MovieCard key={show.id} show={show} />
             ))}

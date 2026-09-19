@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useShows } from "../context/ShowsContext";
 import { useModal } from "../context/ModalContext";
 import RatingBadge from "./ui/RatingBadge";
-import { Search, Star, Sparkles } from "lucide-react";
+import { Search, Star } from "lucide-react";
 
 /**
  * Hero Banner Showcase Component (SRP & ISP)
@@ -41,12 +41,6 @@ export default function HeroBanner() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Hero Typography & CTA */}
           <div className="lg:col-span-7 text-left space-y-6">
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#007ea7]/10 border-2 border-[#007ea7] text-xs font-bold text-[#007ea7] shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#007ea7]" />
-              <span>OVER 50,000+ TV SHOWS & MOVIES LIVE</span>
-            </div>
-
             {/* Main Heading */}
             <h1 className="font-almendra text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wider leading-[1.15] text-[#00171f]">
               DISCOVER{" "}
@@ -73,8 +67,8 @@ export default function HeroBanner() {
                   type="text"
                   value={localSearch}
                   onChange={(e) => setLocalSearch(e.target.value)}
-                  placeholder="Search for Breaking Bad, Stranger Things, Anime..."
-                  className="w-full pl-12 pr-32 py-4 rounded-2xl bg-white border-2 border-slate-300 hover:border-[#007ea7] focus:border-[#007ea7] text-[#00171f] placeholder-slate-400 text-sm sm:text-base font-medium focus:outline-none shadow-md transition-all"
+                  placeholder="OVER 50,000+ TV SHOWS & MOVIES LIVE..."
+                  className="w-full pl-12 pr-32 py-4 rounded-2xl bg-white border-2 border-slate-300 hover:border-[#007ea7] focus:border-[#007ea7] text-[#00171f] placeholder-slate-400 text-xs sm:text-sm font-semibold tracking-wide focus:outline-none shadow-md transition-all"
                 />
                 <button
                   type="submit"

@@ -1,215 +1,155 @@
-# 🎬 Assignment: Movie Explorer
+# 🎬 MovieExplorer — Discover TV Shows & Movies
 
-> **Objective:** Build a responsive **Movie Explorer Application** using React. Users should be able to browse movies, search for specific titles, and view detailed information in an interactive modal.
+> A modern, responsive, and feature-rich **Movie & TV Show Explorer Application** built with **React 19**, **Vite**, **Tailwind CSS**, and the **TVMaze API**. Browse thousands of titles, search dynamically with instant debounced feedback, filter by genre and status, explore rich show details with embedded cast showcases, and curate a personalized watchlist with local storage persistence.
+
+---
+
+## 🌟 Key Features
+
+### 1. 🏠 Cinematic Landing & Hero Showcase
+
+- **Modern Responsive Navbar**: Dynamic active state indicators, watchlist count badge, mobile drawer navigation, and quick explore CTA.
+- **Hero Banner**: Engaging gradient and glowing backdrop aesthetics, headline, engaging summary, embedded quick search, and direct CTA buttons.
+- **Featured & Top-Rated Carousel**: Curated showcase of top-tier critically acclaimed series (e.g., _Breaking Bad_, _Game of Thrones_, _Chernobyl_).
+
+### 2. 🔍 Dynamic Search & Movie Catalog
+
+- **Live Debounced Search**: Seamless integration with TVMaze search API (`GET /search/shows?q=:query`) with instant loading spinners and clear actions.
+- **Responsive Movie Cards**:
+  - High-resolution poster image with graceful fallback placeholders.
+  - Release year, runtime, and genre pills.
+  - Star rating badge (e.g., ⭐ 8.5 / 10).
+  - Quick Watchlist bookmark toggle button with reactive heart animation.
+  - Interactive _See Details_ trigger.
+- **Rich Filtering & Sorting**:
+  - Filter by dynamic genres (_Action_, _Comedy_, _Drama_, _Science-Fiction_, _Thriller_, etc.).
+  - Filter by production status (_Running_, _Ended_, _Upcoming_).
+  - Sort by Rating (Highest/Lowest), Release Date (Newest/Oldest), or Title (A–Z / Z–A).
+- **Infinite Pagination & Load More**: Paginated browsing from `GET /shows` with smooth append loading.
+
+### 3. 🎞️ In-Depth Movie Details Modal
+
+- **Glassmorphic Modal Overlay**: Clean animated slide-up modal with backdrop blur.
+- **Rich Metadata Display**: Release dates, average runtime, network/streaming channel, country, language, broadcast schedule, and official site links.
+- **Formatted Synopsis**: Cleanly sanitized HTML summary overview.
+- **Cast Showcase**: Embedded cast members with actor avatars, actor names, and character roles (`_embedded.cast`).
+- **Accessible Controls**: Dismissible via `✕` close button, clicking the backdrop overlay, or pressing the `Escape` key (with background scroll lock).
+
+### 4. ❤️ Watchlist / Favorites Management
+
+- **Local Persistence**: Save your favorite shows to browser `localStorage`.
+- **Dedicated Watchlist View**: View, manage, and clear your personal saved collection with empty state guidance.
 
 ---
 
 ## 🛠️ Technology Stack
 
-* **Core:** JavaScript, React
-* **Styling:** CSS, Tailwind CSS *(Optional but recommended)*
-* **Data:** Free Movie Database API *(e.g., OMDB, TMDB, TVMaze)*
-* **TVMaze Doc:** [API](https://www.tvmaze.com/api)
+| Layer               | Technology                                                                            |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| **Core Framework**  | [React 19](https://react.dev/) + [Vite](https://vite.dev/)                            |
+| **Styling**         | [Tailwind CSS v4](https://tailwindcss.com/) + Custom Glassmorphism & Micro-animations |
+| **Icons**           | [Lucide React](https://lucide.dev/)                                                   |
+| **Data Source**     | [TVMaze REST API](https://www.tvmaze.com/api)                                         |
+| **Code Formatting** | [Prettier](https://prettier.io/)                                                      |
 
 ---
 
-## 📋 Features & Requirements
+## 🌐 API Endpoints Used
 
-###  1. Home Page
+- **All Shows Catalog**: `GET https://api.tvmaze.com/shows?page=:page`
+- **Show Search**: `GET https://api.tvmaze.com/search/shows?q=:query`
+- **Show Details with Cast**: `GET https://api.tvmaze.com/shows/:id?embed[]=cast&embed[]=episodes`
 
-The Home Page serves as the landing page and must include the following sections:
+---
 
-####  Navbar
-* Application logo or brand name.
-* Navigation links.
-* A prominent button/link to navigate to the **Movie Listing Page**.
+## 🚀 Getting Started
 
-####  Hero Banner
-A visually attractive section to hook the user. It must include:
-* A movie-related background image or gradient.
-* Application title/heading.
-* A short, engaging description.
-* A Call-To-Action (CTA) button navigating to the **Movie Listing Page**.
+### Prerequisites
 
-**📐 UI Wireframe Example:**
-```text
-╭──────────────────────────────────────────────────────╮
-│  🎬 MovieExplorer                        [ Movies ]  │
-├──────────────────────────────────────────────────────┤
-│                                                      │
-│                 DISCOVER MOVIES                      │
-│                                                      │
-│        Explore and discover your favorite            │
-│        movies from around the world.                 │
-│                                                      │
-│                 [   Explore Now ]                    │
-│                                                      │
-╰──────────────────────────────────────────────────────╯
+- **Node.js**: v18.0.0 or later
+- **npm**: v9.0.0 or later
+
+### Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/MSabbirHossen/assignment-2-foundation-program.git
+   cd assignment-2-foundation-program
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+4. **Build for production**:
+
+   ```bash
+   npm run build
+   ```
+
+5. **Format codebase**:
+   ```bash
+   npm run format
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+├── public/
+│   ├── favicon.svg
+│   └── icons.svg
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── FeaturedShows.jsx      # Top rated and trending series showcase
+│   │   ├── Footer.jsx             # Footer with branding, links, and attribution
+│   │   ├── HeroBanner.jsx         # Hero banner with search and CTA
+│   │   ├── MovieCard.jsx          # Reusable movie card with rating & watchlist
+│   │   ├── MovieListingView.jsx   # Catalog listing grid with load more
+│   │   ├── MovieModal.jsx         # Detailed overlay modal with cast
+│   │   ├── Navbar.jsx             # Navigation header with responsive drawer
+│   │   ├── SearchBar.jsx          # Search input, genre chips, and sort controls
+│   │   └── WatchlistView.jsx      # User saved favorites view
+│   ├── context/
+│   │   └── MovieContext.jsx       # State management for movies, filters, & favorites
+│   ├── services/
+│   │   └── tvmazeApi.js           # TVMaze API client & utilities
+│   ├── App.jsx                    # Root view orchestrator
+│   ├── index.css                  # Design tokens, fonts, and glassmorphism utilities
+│   └── main.jsx                   # React DOM entrypoint
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
 ```
 
-####  Footer
-* Application name.
-* Copyright information (e.g., `© 2026 MovieExplorer`).
-* Optional social media or GitHub links.
+---
+
+## 📜 Conventional Commits
+
+This project strictly adheres to [Conventional Commits](https://www.conventionalcommits.org/):
+
+- `feat(scope)`: New user-facing features (e.g. `feat(core): implement TVMaze API integration...`)
+- `fix(scope)`: Bug fixes
+- `style(scope)`: Visual styling and UI polish
+- `docs(scope)`: Documentation updates
+- `chore(scope)`: Tooling, dependency management, and configuration
 
 ---
 
-###  2. Movie Listing Page
+## 📄 License
 
-Create a dedicated page where users can browse and search for movies.
-
-####  Search Functionality
-* Include a prominent search bar at the top of the page.
-* Users must be able to search by **movie title**.
-* The movie grid should dynamically update based on the search query.
-
-** UI Wireframe Example:**
-```text
-╭──────────────────────────────────────────────────────╮
-│  🔍 Search for a movie...                            │
-╰──────────────────────────────────────────────────────╯
-```
-### Search Shows
-
-**Endpoint:** `GET /search/shows?q=:query`
-
-**Example:**
-```bash
-GET https://api.tvmaze.com/search/shows?q=girls
-```
-
-#### 🌐 API Integration & State Management
-Fetch movie data from your chosen **Free Movie Database API**. 
-
-#### 🎬 Movie Cards
-Display movies using reusable Card components. Each card must include:
-* Movie poster image.
-* Movie title/name.
-* Release year/date.
-* Rating (e.g., ⭐ 8.5).
-* A `See Details` button.
-
-** UI Wireframe Example:**
-```text
-╭─────────────────────╮
-│                     │
-│       Poster        │
-│                     │
-├─────────────────────┤
-│  Movie Title        │
-│  ⭐ 8.5  •  📅2024 │
-│                     │
-│  [ See Details ]    │
-╰─────────────────────╯
-```
->  **Requirement:** Cards must be displayed using a **responsive CSS Grid or Flexbox layout**.
-
----
-
-### All Shows/Movie
-
-**Endpoint:**  
-`GET /shows`
-
-**Example:**  
-```bash
-GET https://api.tvmaze.com/shows
-```
-
-**Description:**  
-Fetch all available TV shows.
-
-
-### 🎞️ 3. Movie Details Modal
-
-When a user clicks the **See Details** button, open a modal overlay displaying in-depth information about the selected movie.
-
-**Modal Contents:**
-* Movie backdrop image or large poster.
-* Movie title.
-* Overview / Summary.
-* Rating and Release date.
-* Any additional relevant info from the API (e.g., Genre, Director).
-
-** UI Wireframe Example:**
-```text
-╭──────────────────────────────────────────────╮
-│                                      [ ✕ ]   │
-├──────────────────────────────────────────────┤
-│                                              │
-│               MOVIE BACKDROP                 │
-│                                              │
-├──────────────────────────────────────────────┤
-│  Movie Title                                 │
-│  ⭐ Rating: 8.5   |   📅 Release: 2024      │
-│                                              │
-│  Overview:                                   │
-│  Movie description goes here...              │
-│                                              │
-│                              [ ❌ Close ]    │
-╰──────────────────────────────────────────────╯
-```
-
-**Interaction Requirements:**
-* Must be closable via the `✕` (Close) button.
-* *Optional:* Closable by clicking outside the modal (on the backdrop).
-
----
-
-## 📱 Responsive Design & UX
-
-The application must be fully responsive and provide a seamless experience across all devices:
-*  **Mobile:** Single column layout, stacked elements, touch-friendly buttons.
-*  **Desktop:** 3-4+ column grid for movie cards, optimized spacing.
-
----
-
-## add proper git massege for Every meaningful change. Every meaningful change must be committed separately.
-
-Do not accumulate a large collection of unrelated modifications and create one giant commit.
-
-The PM must be able to understand project progress by reading the Git history.
-
-Required commit style
-
-Use Conventional Commits:
-
-feat(scope): add feature
-fix(scope): fix issue
-refactor(scope): restructure implementation
-style(scope): update styling
-docs(scope): update documentation
-test(scope): add tests
-chore(scope): update tooling
-perf(scope): improve performance
-Examples
-feat(credits): add daily login reward
-feat(human-qa): add representative directory
-fix(chat): preserve sources when loading history
-refactor(api): centralize authenticated requests
-style(composer): improve mobile layout
-test(credits): verify duplicate deduction prevention
-docs(phase-5): update implementation checklist
-Commit discipline
-
-After every small logical change:
-
-Run relevant checks.
-Inspect the diff.
-Commit the change.
-Use a descriptive Conventional Commit message.
-Continue to the next task.
-
-Avoid commits such as:
-
-update
-changes
-final
-done
-fix stuff
-phase complete 
----
-
-## add a nice and detailed README.md for the project
----
-## add proper git commit messages for every meaningful change.
+This project was built for educational and portfolio demonstration purposes. TV show data and imagery are provided by [TVMaze](https://www.tvmaze.com/api).

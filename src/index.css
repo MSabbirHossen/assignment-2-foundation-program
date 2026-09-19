@@ -7,6 +7,7 @@
       "Segoe UI", Roboto, sans-serif;
     --font-display: "Outfit", system-ui, -apple-system, sans-serif;
     --font-almendra: "Almendra SC", serif;
+    --font-architects: "Architects Daughter", cursive;
   }
 
   body {
@@ -28,6 +29,11 @@
   .font-almendra {
     font-family: var(--font-almendra);
     letter-spacing: 0.04em;
+  }
+
+  .font-architects {
+    font-family: var(--font-architects);
+    letter-spacing: 0.02em;
   }
 }
 

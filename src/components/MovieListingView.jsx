@@ -34,7 +34,7 @@ export default function MovieListingView() {
         <h2 className="font-almendra text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-wide">
           Explore Movie & TV Show Catalog
         </h2>
-        <p className="text-slate-400 text-sm sm:text-base">
+        <p className="font-architects text-slate-300 text-base sm:text-lg">
           Find your next binge-worthy show. Search titles, filter by genre, or
           sort by rating.
         </p>

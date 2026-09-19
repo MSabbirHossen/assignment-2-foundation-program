@@ -212,7 +212,7 @@ export default function MovieModal() {
               Synopsis & Overview
             </h4>
             <div
-              className="text-slate-300 text-sm sm:text-base leading-relaxed prose prose-invert max-w-none"
+              className="font-architects text-slate-200 text-base sm:text-lg leading-relaxed prose prose-invert max-w-none"
               dangerouslySetInnerHTML={{
                 __html:
                   show.summary ||

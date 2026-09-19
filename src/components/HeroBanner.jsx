@@ -56,7 +56,7 @@ export default function HeroBanner() {
             </h1>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed font-normal">
+            <p className="font-architects text-lg sm:text-xl text-slate-300 max-w-xl leading-relaxed font-normal">
               Explore and discover your favorite movies and television series
               from around the world. Search instantly by title, filter by
               genres, and dive into cast details and summaries.
@@ -188,7 +188,7 @@ export default function HeroBanner() {
                       ))}
                   </div>
 
-                  <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                  <p className="font-architects text-sm text-slate-300 line-clamp-2 leading-relaxed">
                     {featuredHeroShow.summary
                       ? featuredHeroShow.summary.replace(/<[^>]*>?/gm, "")
                       : "An unforgettable saga filled with suspense, drama, and acclaimed performances."}

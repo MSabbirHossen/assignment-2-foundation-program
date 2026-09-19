@@ -69,6 +69,15 @@ export default function Footer() {
                   My Saved Watchlist
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/developer"
+                  onClick={scrollToTop}
+                  className="hover:text-[#00a8e8] transition-colors"
+                >
+                  Developer Profile
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import MovieListingPage from "./pages/MovieListingPage";
 import WatchlistPage from "./pages/WatchlistPage";
+import DeveloperPage from "./pages/DeveloperPage";
 import MovieModal from "./components/MovieModal";
 import Footer from "./components/Footer";
 
@@ -19,6 +20,7 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/movies" element={<MovieListingPage />} />
               <Route path="/watchlist" element={<WatchlistPage />} />
+              <Route path="/developer" element={<DeveloperPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

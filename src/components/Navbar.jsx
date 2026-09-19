@@ -72,6 +72,10 @@ export default function Navbar() {
                 </span>
               )}
             </NavLink>
+
+            <NavLink to="/developer" className={navLinkClass}>
+              Developer
+            </NavLink>
           </nav>
 
           {/* Action Button */}
@@ -143,6 +147,13 @@ export default function Navbar() {
                 {favorites.length}
               </span>
             )}
+          </NavLink>
+          <NavLink
+            to="/developer"
+            onClick={closeMobileMenu}
+            className={mobileNavLinkClass}
+          >
+            Developer
           </NavLink>
           <div className="pt-2">
             <Link

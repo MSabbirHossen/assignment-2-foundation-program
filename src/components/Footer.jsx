@@ -8,6 +8,12 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const footerLinks = [
+    { to: "/", label: "Home" },
+    { to: "/watchlist", label: "My Watchlist" },
+    { to: "/movies", label: "Browse Movies" },
+    { to: "/developer", label: "Developer Profile" }
+  ]
   return (
     <footer className="border-t border-[#003459] bg-[#00171f] text-slate-300 text-sm mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
@@ -39,42 +45,17 @@ export default function Footer() {
               Quick Links
             </h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  to="/"
-                  onClick={scrollToTop}
-                  className="hover:text-[#00a8e8] transition-colors"
-                >
-                  Home Showcase
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/movies"
-                  onClick={scrollToTop}
-                  className="hover:text-[#00a8e8] transition-colors"
-                >
-                  Browse Movie Listing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/watchlist"
-                  onClick={scrollToTop}
-                  className="hover:text-[#00a8e8] transition-colors"
-                >
-                  My Saved Watchlist
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/developer"
-                  onClick={scrollToTop}
-                  className="hover:text-[#00a8e8] transition-colors"
-                >
-                  Developer Profile
-                </Link>
-              </li>
+              {footerLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    onClick={scrollToTop}
+                    className="hover:text-[#00a8e8] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

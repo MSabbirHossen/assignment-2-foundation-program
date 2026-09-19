@@ -16,17 +16,15 @@ export default function Navbar() {
   };
 
   const navLinkClass = ({ isActive }) =>
-    `px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 border-2 ${
-      isActive
-        ? "bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7] shadow-xs"
-        : "text-[#003459] border-transparent hover:text-[#007ea7] hover:bg-slate-100"
+    `px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 border-2 ${isActive
+      ? "bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7] shadow-xs"
+      : "text-[#003459] border-transparent hover:text-[#007ea7] hover:bg-slate-100"
     }`;
 
   const mobileNavLinkClass = ({ isActive }) =>
-    `w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold border-2 ${
-      isActive
-        ? "bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7]"
-        : "text-[#003459] border-transparent hover:bg-slate-100"
+    `w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold border-2 ${isActive
+      ? "bg-[#007ea7]/10 text-[#007ea7] border-[#007ea7]"
+      : "text-[#003459] border-transparent hover:bg-slate-100"
     }`;
 
   return (
@@ -71,10 +69,6 @@ export default function Navbar() {
                   {favorites.length}
                 </span>
               )}
-            </NavLink>
-
-            <NavLink to="/developer" className={navLinkClass}>
-              Developer
             </NavLink>
           </nav>
 
@@ -147,13 +141,6 @@ export default function Navbar() {
                 {favorites.length}
               </span>
             )}
-          </NavLink>
-          <NavLink
-            to="/developer"
-            onClick={closeMobileMenu}
-            className={mobileNavLinkClass}
-          >
-            Developer
           </NavLink>
           <div className="pt-2">
             <Link

@@ -31,7 +31,7 @@ export default function MovieListingView() {
           <Compass className="w-3.5 h-3.5" />
           <span>GLOBAL DIRECTORY</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+        <h2 className="font-almendra text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-wide">
           Explore Movie & TV Show Catalog
         </h2>
         <p className="text-slate-400 text-sm sm:text-base">

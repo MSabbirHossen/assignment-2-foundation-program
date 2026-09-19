@@ -133,7 +133,7 @@ export default function MovieModal() {
 
               <h2
                 id="modal-title"
-                className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight"
+                className="font-almendra text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-wide"
               >
                 {show.name}
               </h2>

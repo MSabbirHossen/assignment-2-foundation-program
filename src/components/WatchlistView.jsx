@@ -24,7 +24,7 @@ export default function WatchlistView() {
             <Heart className="w-4 h-4 fill-rose-400" />
             <span>Personal Collection</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <h1 className="font-almendra text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-wide">
             My Watchlist
           </h1>
           <p className="text-sm text-slate-400 mt-1">

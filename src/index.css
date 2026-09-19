@@ -6,6 +6,7 @@
       "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont,
       "Segoe UI", Roboto, sans-serif;
     --font-display: "Outfit", system-ui, -apple-system, sans-serif;
+    --font-almendra: "Almendra SC", serif;
   }
 
   body {
@@ -22,6 +23,11 @@
   h5,
   h6 {
     font-family: var(--font-display);
+  }
+
+  .font-almendra {
+    font-family: var(--font-almendra);
+    letter-spacing: 0.04em;
   }
 }
 

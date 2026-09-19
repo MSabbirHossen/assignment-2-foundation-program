@@ -47,7 +47,7 @@ export default function HeroBanner() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
+            <h1 className="font-almendra text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wider leading-[1.15] text-white">
               DISCOVER{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-teal-200">
                 MOVIES
@@ -165,7 +165,7 @@ export default function HeroBanner() {
                 {/* Card Content Footer */}
                 <div className="p-5 text-left space-y-3 bg-[#0d1424]">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-white tracking-wide">
+                    <h3 className="font-almendra text-xl sm:text-2xl font-bold text-white tracking-wider">
                       {featuredHeroShow.name}
                     </h3>
                     <span className="text-xs text-slate-400 font-medium">

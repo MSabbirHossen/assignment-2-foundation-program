@@ -19,7 +19,7 @@ export default function FeaturedShows() {
               <TrendingUp className="w-4 h-4" />
               <span>Critically Acclaimed</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            <h2 className="font-almendra text-3xl sm:text-4xl font-bold text-white tracking-wide">
               Top Rated & Trending Shows
             </h2>
             <p className="text-sm text-slate-400 mt-1">

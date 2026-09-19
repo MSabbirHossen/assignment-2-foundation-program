@@ -105,7 +105,7 @@ export default function MovieCard({ show }) {
           <h3
             onClick={() => openModal(show)}
             title={show.name}
-            className="text-base sm:text-lg font-bold text-white group-hover:text-indigo-300 transition-colors line-clamp-1 cursor-pointer"
+            className="font-almendra text-lg sm:text-xl font-bold text-white group-hover:text-indigo-300 transition-colors line-clamp-1 cursor-pointer tracking-wider"
           >
             {show.name}
           </h3>

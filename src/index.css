@@ -7,7 +7,7 @@
       "Segoe UI", Roboto, sans-serif;
     --font-display: "Outfit", system-ui, -apple-system, sans-serif;
     --font-almendra: "Almendra SC", serif;
-    --font-architects: "Architects Daughter", cursive;
+    --font-roboto: "Roboto", system-ui, -apple-system, sans-serif;
 
     /* Palette variables */
     --color-white: #ffffff;
@@ -39,9 +39,9 @@
     letter-spacing: 0.04em;
   }
 
-  .font-architects {
-    font-family: var(--font-architects);
-    letter-spacing: 0.02em;
+  .font-roboto {
+    font-family: var(--font-roboto);
+    letter-spacing: 0.01em;
   }
 }
 

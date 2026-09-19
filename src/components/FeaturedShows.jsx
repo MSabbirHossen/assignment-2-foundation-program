@@ -23,7 +23,7 @@ export default function FeaturedShows() {
             <h2 className="font-almendra text-3xl sm:text-4xl font-bold text-[#00171f] tracking-wide">
               Top Rated & Trending Shows
             </h2>
-            <p className="font-architects text-base sm:text-lg text-[#003459]/70 mt-1">
+            <p className="font-roboto text-base sm:text-lg text-[#003459]/70 mt-1">
               Highest scoring series with phenomenal ratings across critics and
               viewers
             </p>

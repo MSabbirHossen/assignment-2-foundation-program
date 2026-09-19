@@ -248,7 +248,7 @@ export default function DeveloperPage() {
         <h1 className="font-almendra text-4xl sm:text-5xl md:text-6xl font-bold text-[#00171f] tracking-wide">
           Meet the Developer
         </h1>
-        <p className="font-architects text-base sm:text-lg text-[#003459]/80 leading-relaxed">
+        <p className="font-roboto text-base sm:text-lg text-[#003459]/80 leading-relaxed">
           Connect with MS Hossen (Part-Time Coder), the engineer behind
           MovieExplorer. Reach out via WhatsApp, Telegram, Email, or explore the
           creative portfolio.
@@ -287,7 +287,7 @@ export default function DeveloperPage() {
               <p className="text-sm sm:text-base font-bold text-[#007ea7]">
                 Full-Stack Software Engineer • Creator & Maintainer
               </p>
-              <p className="font-architects text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed">
+              <p className="font-roboto text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed">
                 Designing cohesive, human-centered systems and high-performance
                 web applications that bring structure and joy to daily life.
                 Crafted with React 19, Next.js, Node.js, and aesthetic UI
@@ -363,7 +363,7 @@ export default function DeveloperPage() {
             <h3 className="font-almendra text-2xl font-bold text-[#00171f]">
               Send a Direct Message
             </h3>
-            <p className="font-architects text-sm text-[#003459]/70 leading-relaxed">
+            <p className="font-roboto text-sm text-[#003459]/70 leading-relaxed">
               Have a project question, collaboration idea, or feature request?
               Send a quick message straight to my WhatsApp.
             </p>
@@ -406,7 +406,7 @@ export default function DeveloperPage() {
             <h3 className="font-almendra text-2xl sm:text-3xl font-bold text-white tracking-wide">
               Let’s Build Something Great
             </h3>
-            <p className="font-architects text-sm text-slate-300 leading-relaxed">
+            <p className="font-roboto text-sm text-slate-300 leading-relaxed">
               Always open to open-source contributions, high-impact product
               engineering, and technical mentorship.
             </p>
@@ -440,7 +440,7 @@ export default function DeveloperPage() {
             <h2 className="font-almendra text-3xl font-bold text-[#00171f] tracking-wide">
               Official Channels & Ventures
             </h2>
-            <p className="font-architects text-sm text-[#003459]/70 mt-1">
+            <p className="font-roboto text-sm text-[#003459]/70 mt-1">
               Explore source repositories, professional platforms, and
               educational initiatives
             </p>
@@ -492,7 +492,7 @@ export default function DeveloperPage() {
                   </span>
                 </div>
 
-                <p className="font-architects text-xs text-slate-600 leading-relaxed line-clamp-3">
+                <p className="font-roboto text-xs text-slate-600 leading-relaxed line-clamp-3">
                   {channel.description}
                 </p>
               </div>

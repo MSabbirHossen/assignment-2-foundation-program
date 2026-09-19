@@ -95,7 +95,7 @@ export default function MovieModal() {
               Synopsis & Overview
             </h4>
             <div
-              className="font-architects text-slate-800 text-base sm:text-lg leading-relaxed max-w-none prose p-4 bg-slate-50 rounded-2xl border border-slate-200"
+              className="font-roboto text-slate-800 text-base sm:text-lg leading-relaxed max-w-none prose p-4 bg-slate-50 rounded-2xl border border-slate-200"
               dangerouslySetInnerHTML={{
                 __html:
                   show.summary ||

@@ -27,7 +27,7 @@ export default function DeveloperFooterInfo() {
                 Part-Time Coder
               </span>
             </div>
-            <p className="font-architects text-xs sm:text-sm text-slate-300 mt-0.5">
+            <p className="font-roboto text-xs sm:text-sm text-slate-300 mt-0.5">
               Full-Stack Software Engineer • Architect of MovieExplorer
             </p>
           </div>

@@ -133,7 +133,7 @@ export default function Footer() {
         {/* Bottom Bar */}
 
         <DeveloperFooterInfo />
-        <p>© 2026 MovieExplorer. All rights reserved.</p>
+        <p className="text-center text-slate-300 mt-5 font-architects ">© 2026 MovieExplorer. All rights reserved.</p>
       </div>
     </footer>
   );

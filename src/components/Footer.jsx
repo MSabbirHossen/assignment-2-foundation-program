@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import DeveloperFooterInfo from "./DeveloperFooterInfo";
 import { Film, Heart, ArrowUp } from "lucide-react";
 
 export default function Footer() {
@@ -10,6 +11,9 @@ export default function Footer() {
   return (
     <footer className="border-t border-[#003459] bg-[#00171f] text-slate-300 text-sm mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        {/* Developer & Creator Hub */}
+        <DeveloperFooterInfo />
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand & Mission */}
           <div className="md:col-span-2 space-y-4">

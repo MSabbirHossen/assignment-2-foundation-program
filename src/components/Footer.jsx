@@ -11,9 +11,6 @@ export default function Footer() {
   return (
     <footer className="border-t border-[#003459] bg-[#00171f] text-slate-300 text-sm mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        {/* Developer & Creator Hub */}
-        <DeveloperFooterInfo />
-
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand & Mission */}
           <div className="md:col-span-2 space-y-4">
@@ -100,7 +97,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com"
+                href="https://github.com/MSabbirHossen"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub repository"
@@ -111,14 +108,14 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://twitter.com"
+                href="https://facebook.com/sabb1rhossen"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Twitter profile"
+                aria-label=" Facebook profile"
                 className="p-2.5 rounded-xl bg-[#003459] hover:bg-[#007ea7] border border-white/10 text-white transition-colors"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </a>
               <button
@@ -134,14 +131,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#003459] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© 2026 MovieExplorer. All rights reserved.</p>
-          <p className="flex items-center gap-1">
-            Built with{" "}
-            <Heart className="w-3.5 h-3.5 text-[#00a8e8] fill-[#00a8e8]" />{" "}
-            using React & Tailwind CSS
-          </p>
-        </div>
+
+        <DeveloperFooterInfo />
+        <p>© 2026 MovieExplorer. All rights reserved.</p>
       </div>
     </footer>
   );

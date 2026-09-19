@@ -1,33 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
-import {
-  Search,
-  Flame,
-  Play,
-  Star,
-  Sparkles,
-  TrendingUp,
-  ShieldCheck,
-} from "lucide-react";
+import { Search, Flame, Play, Star, Sparkles, TrendingUp } from "lucide-react";
 
 export default function HeroBanner() {
-  const {
-    setActiveTab,
-    searchQuery,
-    setSearchQuery,
-    topRatedShows,
-    openModal,
-  } = useMovieContext();
+  const { setSearchQuery, topRatedShows, openModal } = useMovieContext();
   const [localSearch, setLocalSearch] = useState("");
+  const navigate = useNavigate();
 
   const handleHeroSearchSubmit = (e) => {
     e.preventDefault();
     if (localSearch.trim()) {
       setSearchQuery(localSearch.trim());
-      setActiveTab("explore");
-    } else {
-      setActiveTab("explore");
     }
+    navigate("/movies");
   };
 
   const featuredHeroShow = topRatedShows[0] || {
@@ -100,16 +86,13 @@ export default function HeroBanner() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
-                onClick={() => {
-                  setActiveTab("explore");
-                  window.scrollTo({ top: 600, behavior: "smooth" });
-                }}
+              <Link
+                to="/movies"
                 className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-base shadow-xl shadow-indigo-600/30 hover:shadow-indigo-500/50 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3"
               >
                 <Flame className="w-5 h-5 text-amber-300 animate-bounce" />
                 <span>Explore Now</span>
-              </button>
+              </Link>
 
               <button
                 onClick={() => {

@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
 import MovieCard from "./MovieCard";
 import { Heart, Film, ArrowRight, Trash2 } from "lucide-react";
 
 export default function WatchlistView() {
-  const { favorites, setActiveTab, toggleFavorite } = useMovieContext();
+  const { favorites, toggleFavorite } = useMovieContext();
 
   const handleClearWatchlist = () => {
     if (
@@ -63,13 +64,13 @@ export default function WatchlistView() {
               your personal watchlist.
             </p>
           </div>
-          <button
-            onClick={() => setActiveTab("explore")}
+          <Link
+            to="/movies"
             className="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 inline-flex items-center gap-2 transition-all hover:scale-105"
           >
             <span>Explore Movies</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">

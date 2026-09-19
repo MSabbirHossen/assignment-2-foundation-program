@@ -1,10 +1,8 @@
 import React from "react";
-import { Film, Heart, ArrowUp, Globe, Sparkles } from "lucide-react";
-import { useMovieContext } from "../context/MovieContext";
+import { Link } from "react-router-dom";
+import { Film, Heart, ArrowUp } from "lucide-react";
 
 export default function Footer() {
-  const { setActiveTab } = useMovieContext();
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -15,14 +13,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand & Mission */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
+            <Link
+              to="/"
+              onClick={scrollToTop}
+              className="flex items-center gap-3"
+            >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/25">
                 <Film className="w-5 h-5 text-white" />
               </div>
               <span className="font-extrabold text-2xl tracking-tight text-white">
                 Movie<span className="text-indigo-400">Explorer</span>
               </span>
-            </div>
+            </Link>
             <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
               Your ultimate gateway to exploring top movies, TV series,
               blockbusters, and cast details with real-time ratings powered by
@@ -37,37 +39,31 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button
-                  onClick={() => {
-                    setActiveTab("home");
-                    scrollToTop();
-                  }}
+                <Link
+                  to="/"
+                  onClick={scrollToTop}
                   className="hover:text-indigo-400 transition-colors"
                 >
                   Home Showcase
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    setActiveTab("explore");
-                    scrollToTop();
-                  }}
+                <Link
+                  to="/movies"
+                  onClick={scrollToTop}
                   className="hover:text-indigo-400 transition-colors"
                 >
                   Browse Movie Listing
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    setActiveTab("favorites");
-                    scrollToTop();
-                  }}
+                <Link
+                  to="/watchlist"
+                  onClick={scrollToTop}
                   className="hover:text-indigo-400 transition-colors"
                 >
                   My Saved Watchlist
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
